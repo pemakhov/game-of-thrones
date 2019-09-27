@@ -5,12 +5,6 @@
   <title>Login to Game Of Thrones</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css" >
   <!-- From https://stackoverflow.com/questions/4797166/set-default-value-of-a-password-input-so-it-can-be-read -->
-  <script type="text/javascript">
-    function makeItPassword() {
-      document.getElementById("passcontainer") .innerHTML = "<input id=\"password\" name=\"password\" type=\"password\"/>";
-      document.getElementById("password").focus();
-    }
-  </script>
 </head>
 <body>
   <div class="left"></div>
@@ -19,12 +13,12 @@
     <form action="">
       <!-- First page beginning -->
       <h2>Enter your email</h2>
-      <input type="email" value="arya@westeros.com" onfocus="this.value=''">
+      <input type="email" placeholder="arya@westeros.com">
       <hr>
       <h2>Choose secure password</h2>
       <div class="description">Must be at least 8 characters</div>
-      <span id="passcontainer">
-        <input onfocus="return makeItPassword()" type="text" name="password" value="password">
+      <span id="pass">
+        <input type="password" name="password" placeholder="password">
       </span>
       <hr>
       <div class="box">
@@ -43,7 +37,7 @@
       </blockquote>
       <h2>Who are you?</h2>
       <div class="description">Alpha-numeric username</div>
-      <input type="text" name="name" value="arya" onfocus="this.value=''">
+      <input type="text" name="name" placeholder="arya">
       <hr>
       <h2>Your Great House</h2>
       <select id="house" name="house">
@@ -60,7 +54,7 @@
       </select>
       <hr>
       <h2>Your preferences, hobbies, wishes, etc.</h2>
-      <textarea id="hobbies" name="hobbies" cols="30" rows="2" onfocus="this.value=''">I have a long TOKILL list...</textarea>
+      <textarea id="hobbies" name="hobbies" cols="30" rows="2" placeholder="I have a long TOKILL list..."></textarea>
       <hr>
       <input type="button" value="Save">
       -->
