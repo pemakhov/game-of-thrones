@@ -4,6 +4,7 @@
   --text-secondary: #ddd;
   --text-placeholder: #757575;
   --button-color: #c0994f;
+  --emergency-color: #c0392b;
 }
 
 html,
@@ -43,6 +44,16 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#first-page,
+#second-page {
+  margin: 0;
+  padding: 0;
+}
+
+#second-page {
+  display: none;
 }
 
 @font-face {
@@ -168,6 +179,7 @@ input[type="button"]:active {
 :-moz-placeholder { /* Firefox 18- */
   color: var(--text-placeholder);
 }
+/* End of placeholder style */
 
 blockquote {
   border-left: 3px solid var(--text-main);
@@ -181,6 +193,11 @@ blockquote p {
   font-family: sans-serif;
 }
 
+.invalid-input {
+  outline-style: dashed;
+  outline: 2px dashed var(--emergency-color);
+  color: red;
+}
 
 /* Checkbox with a custom background color, from the following website:
 https://stackoverflow.com/questions/34388696/how-to-change-the-background-color-on-a-input-checkbox-with-css/34389136 */
