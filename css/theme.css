@@ -196,7 +196,6 @@ blockquote p {
 .invalid-input {
   outline-style: dashed;
   outline: 2px dashed var(--emergency-color);
-  color: red;
 }
 
 /* Checkbox with a custom background color, from the following website:
