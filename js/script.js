@@ -1,13 +1,21 @@
+/* RegExp test input patterns */
 const emailPattern = /^[A-Za-z\d][\w.-]+[A-Za-z\d]@[A-Za-z\d][\w-]+[A-Za-z\d]\.[A-Za-z]{2,3}$/;
 const passPattern = /^[\w!@#$%^&*()_+-=]{8,32}$/;
 
+/* Input validators */
 const validateEmail = (email) => emailPattern.test(email);
 const validatePass = (pass) => passPattern.test(pass);
+
+/* Conceils the code related to the first page and reveals the second page */
 const goForeward = () => {
   document.getElementById('first-page').style.display = 'none';
   document.getElementById('second-page').style.display = 'block';
 };
 
+/* Highlights the fields that are filled in wrongly
+ * When all fields are filled in correctly, goes to
+ * the second page.
+ */
 const validateSignUp = () => {
   const isValidEmail = validateEmail(document.getElementById('email').value);
   const isValidPass = validatePass(document.getElementById('password').value);
