@@ -114,7 +114,10 @@ input[type="checkbox"] {
 }
 
 textarea,
-select {
+select,
+input[type="email"],
+input[type="password"],
+input[type="text"] {
   width: 100%;
 }
 
@@ -280,3 +283,15 @@ https://stackoverflow.com/questions/34388696/how-to-change-the-background-color-
     outline: 0;
 }
 /* End of the section (checkbox with a custom background color) */
+
+/* Background of input at autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px var(--bg-color) inset !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: var(--text-main) !important;
+}
