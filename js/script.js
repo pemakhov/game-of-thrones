@@ -1,8 +1,8 @@
 /* RegExp test input patterns */
 const emailPattern = /^[A-Za-z\d][\w.-]+[A-Za-z\d]@[A-Za-z\d][\w-]+[A-Za-z\d]\.[A-Za-z]{2,3}$/;
 const passPattern = /^[\w!@#$%^&*()_+-=]{8,32}$/;
-const namePattern = /[A-Za-z\d]\+/;
-const hobbiesPattern = /^[\w!@#$%^&*()_+-=]{8,500}/;
+const namePattern = /([A-Za-z\d]+)$/;
+const hobbiesPattern = /[\w!@#$%^&*()_+-=]{8,500}$/;
 
 /* Input validators */
 const validateEmail = (email) => emailPattern.test(email);
@@ -52,17 +52,23 @@ const validateSignUp = () => {
 /* Highlights the fields that are filled in wrongly */
 const validateSave = () => {
   const validName = validateName(document.getElementById('name').value);
-  const hobbies = validateHobbies(document.getElementById('hobbies').value);
-  if (validName && validHobbies) {
-    goForeward();
+  const validHobbies = validateHobbies(document.getElementById('hobbies').value);
+  const validHouse = document.getElementById('house').value !== 0;
+  console.log(validHouse);
+  if (validName && validHobbies && validHouse) {
+    alert('Cool!');
   } else {
     const nameInput = document.getElementById('name');
     const hobbiesArea = document.getElementById('hobbies');
+    const houseSelect = document.getElementById('house');
     if (!validName) {
       nameInput.classList.add('invalid-input');
     }
-    if (!validPass) {
+    if (!validHobbies) {
       hobbiesArea.classList.add('invalid-input');
+    }
+    if (!validHouse) {
+      houseSelect.classList.add('invalid-input');
     }
     nameInput.addEventListener('focusin', () => {
       nameInput.classList.remove('invalid-input');
@@ -70,11 +76,17 @@ const validateSave = () => {
     hobbiesArea.addEventListener('focusin', () => {
       hobbiesArea.classList.remove('invalid-input');
     });
+    houseSelect.addEventListener('focusin', () => {
+      houseSelect.classList.remove('invalid-input');
+    });
     nameInput.addEventListener('focusout', () => {
       if (!validateName(document.getElementById('name').value)) nameInput.classList.add('invalid-input');
     });
     hobbiesArea.addEventListener('focusout', () => {
       if (!validateHobbies(document.getElementById('hobbies').value)) hobbiesArea.classList.add('invalid-input');
+    });
+    houseSelect.addEventListener('focusout', () => {
+      if (document.getElementById('house').value !== 0) houseSelect.classList.add('invalid-input');
     });
   }
 };
