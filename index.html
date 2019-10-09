@@ -39,7 +39,7 @@
         </blockquote>
         <h2>Who are you?</h2>
         <div class="description">Alpha-numeric username</div>
-        <input type="text" name="name" placeholder="arya">
+        <input id="name" type="text" name="name" placeholder="arya">
         <hr>
         <h2>Your Great House</h2>
         <select id="house" name="house">
@@ -58,7 +58,7 @@
         <h2>Your preferences, hobbies, wishes, etc.</h2>
         <textarea id="hobbies" name="hobbies" cols="30" rows="2" placeholder="I have a long TOKILL list..."></textarea>
         <hr>
-        <input type="button" value="Save">
+        <input type="button" value="Save" onClick="validateSave()">
       </div>
       <!-- Second page end -->
     </form>
