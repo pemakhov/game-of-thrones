@@ -4,7 +4,7 @@
   --text-secondary: #ddd;
   --text-placeholder: #757575;
   --button-color: #c0994f;
-  --emergency-color: #c0392b;
+  --emergency-color: #e55039;
 }
 
 html,
@@ -21,6 +21,7 @@ body {
   background-repeat: repeat;
   background-color: var(--bg-color);
   display: flex;
+  color: var(--text-secondary);
 }
 
 .left,
@@ -76,9 +77,9 @@ h2 {
 }
 
 .description {
-  color: var(--text-secondary);
   font-family: "Open sans", sans-serif;
   font-size: 1em;
+  color: var(--text-secondary);
 }
 
 hr {
@@ -100,10 +101,10 @@ textarea,
 select {
   border: none;
   background: transparent;
-  color: var(--text-secondary);
   font-family: "Open sans", sans-serif;
   font-size: 1.3em;
   margin: 0.5em 0;
+  color: var(--secondary-color);
 }
 
 input[type="checkbox"] {
@@ -128,10 +129,6 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-}
-
-select {
-  color: var(--text-secondary);
 }
 
 select option {
@@ -190,14 +187,16 @@ blockquote {
 }
 blockquote p {
   display: inline;
-  color: var(--text-secondary);
   font-size: 1.1em;
   font-family: "Open sans", sans-serif;
+  color: var(--text-secondary);
 }
 
 .invalid-input {
-  outline-style: dashed;
-  outline: 2px dashed var(--emergency-color);
+  text-decoration: underline;
+  text-decoration-color: var(--emergency-color);
+  text-decoration-style: dashed;
+  outline: 2px dotted var(--emergency-color);
 }
 
 /* Checkbox with a custom background color, from the following website:

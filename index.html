@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Login on Game of Thrones</title>
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
   <link href="https://fonts.googleapis.com/css?family=EB+Garamond&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/theme.css" >
   <script src="js/script.js"></script>
@@ -13,7 +12,6 @@
   <div class="right">
     <h1>GAME OF THRONES</h1>
     <form action="">
-      <!-- First page beginning -->
       <div id="first-page">
         <h2>Enter your email</h2>
         <input type="email" placeholder="arya@westeros.com" id="email">
@@ -30,11 +28,9 @@
             <label for="remember-me"><span>Remember me</span></label>
           </div>
         </div>
-        <input type="button" value="Sign up" id="sign-up" onClick="validateSignUp()">
+        <input type="button" value="Sign up" id="sign-up">
       </div>
     </form>
-      <!-- First page end -->
-      <!-- Second page beginning -->
     <form action="">
       <div id="second-page">
         <blockquote>
@@ -62,9 +58,8 @@
         <h2>Your preferences, hobbies, wishes, etc.</h2>
         <textarea id="hobbies" name="hobbies" cols="30" rows="2" placeholder="I have a long TOKILL list..."></textarea>
         <hr>
-        <input type="button" value="Save" onClick="validateSave()">
+        <input id="save" type="button" value="Save">
       </div>
-      <!-- Second page end -->
     </form>
   </div>
   </section>
