@@ -2,7 +2,7 @@
 const emailPattern = /^[A-Za-z\d][\w.-]+[A-Za-z\d]@[A-Za-z\d][\w-]+[A-Za-z\d]\.[A-Za-z]{2,3}$/;
 const passPattern = /^[\w!@#$%^&*()_+-=]{8,32}$/;
 const namePattern = /([A-Za-z\d]+)$/;
-const hobbiesPattern = /[\w!@#$%^&*()_+-=]{8,500}$/;
+const hobbiesPattern = /^(?:\b\w+\b[\s\r\n]*){3,250}$/;
 
 /* Input validators */
 const emailIsValid = () => emailPattern.test(document.getElementById('email').value);
@@ -10,6 +10,11 @@ const passIsValid = () => passPattern.test(document.getElementById('password').v
 const nameIsValid = () => namePattern.test(document.getElementById('name').value);
 const hobbiesAreValid = () => hobbiesPattern.test(document.getElementById('hobbies').value);
 const houseIsSelected = () => document.getElementById('house').value !== '0';
+
+/* Successfully signed up message */
+const afterSignUpMessage = 'Thank you for signing up and filling in information.'
+        + ' But our websight is under construction yet.'
+        + ' We are terribly sorry.';
 
 /* Checks when document is ready and runs a function */
 const documetIsReady = (fn) => {
@@ -94,9 +99,7 @@ const goForeward = () => {
   validateDetailedInfo(nameInput, houseSelect, hobbiesArea);
   saveButton.addEventListener('click', () => {
     if (nameIsValid() && hobbiesAreValid() && houseIsSelected()) {
-      alert('Thank you for signing up and filling in information.'
-        + ' But our websight is not finished yet.'
-        + ' We are terribly sorry.');
+      alert(afterSignUpMessage);
     } else {
       if (!nameIsValid()) {
         nameInput.classList.add('invalid-input');
