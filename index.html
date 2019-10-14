@@ -6,9 +6,9 @@
   <link href="https://fonts.googleapis.com/css?family=EB+Garamond&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/slick.css"/>
   <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.0.11/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/select2-bootstrap4.css">
   <link rel="stylesheet" type="text/css" href="css/theme.css" >
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-  <script src="js/script.js"></script>
 </head>
 <body>
   <div class="left">
@@ -57,7 +57,7 @@
         <input id="name" type="text" name="name" placeholder="arya">
         <hr>
         <h2>Your Great House</h2>
-        <select id="house" name="house">
+        <select id="house" name="house" class="select2">
           <option selected="selected" value="0">Select House</option>
           <option value="arryn">Arryn of the Eyrie</option>
           <option value="baratheon">Baratheon of Storm's End</option>
@@ -79,6 +79,9 @@
     </form>
   </div>
   </section>
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.11/dist/js/select2.min.js"></script>
   <script type="text/javascript" src="js/slick.min.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>

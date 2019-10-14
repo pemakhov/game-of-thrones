@@ -141,13 +141,23 @@ documetIsReady(() => {
   });
 });
 
-/* jQuery functions (slider) */
-$(document).ready(function() {
+/* Sets slider */
+const setSlider = () => {
   $('.slider').slick({
     dots: false,
     infinite: true,
     arrows: false,
     autoplay: true,
     autoplaySpeed: 3000,
+  });
+};
+
+/* jQuery functions */
+$(document).ready(function() {
+  setSlider();
+  $('.select2').select2({
+    width: '100%',
+    theme: 'bootstrap4',
+    minimumResultsForSearch: -1,
   });
 });
