@@ -152,12 +152,19 @@ const setSlider = () => {
   });
 };
 
-/* jQuery functions */
-$(document).ready(function() {
-  setSlider();
+/* Set custom select-option (Select2) */
+const setSelect = () => {
   $('.select2').select2({
     width: '100%',
     theme: 'bootstrap4',
     minimumResultsForSearch: -1,
   });
+}
+
+/* jQuery functions */
+$(document).ready(function() {
+  setSlider();
+  setSelect();
+  const renderedSelection = $('.select2');
+  console.log(renderedSelection);
 });
