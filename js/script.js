@@ -140,3 +140,14 @@ documetIsReady(() => {
     }
   });
 });
+
+/* jQuery functions (slider) */
+$(document).ready(function() {
+  $('.slider').slick({
+    dots: false,
+    infinite: true,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  });
+});
