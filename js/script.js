@@ -16,17 +16,6 @@ const afterSignUpMessage = 'Thank you for signing up and filling in information.
         + ' But our websight is under construction yet.'
         + ' We are terribly sorry.';
 
-/* Checks when document is ready and runs a function */
-const documetIsReady = (fn) => {
-  // see if DOM is already available
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    // call on next available tick
-    setTimeout(fn, 1);
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
-  }
-};
-
 /* Validates input while typing.
  * input - an input to validate;
  * validator - the function that validates the input.
@@ -117,30 +106,6 @@ const goForeward = () => {
   });
 };
 
-/* Shows the message about successful validation,
- * if all inputs passed validation.
- */
-documetIsReady(() => {
-  const emailInput = document.getElementById('email');
-  const passInput = document.getElementById('password');
-  const signUpButton = document.getElementById('sign-up');
-  validateSignUp(emailInput, passInput);
-  signUpButton.addEventListener('click', () => {
-    if (emailIsValid() && passIsValid()) {
-      goForeward();
-    } else {
-      if (!emailIsValid()) {
-        emailInput.classList.add('invalid-input');
-        validateOnType(emailInput, emailIsValid);
-      }
-      if (!passIsValid()) {
-        passInput.classList.add('invalid-input');
-        validateOnType(passInput, passIsValid);
-      }
-    }
-  });
-});
-
 /* Sets slider */
 const setSlider = () => {
   $('.slider').slick({
@@ -161,10 +126,33 @@ const setSelect = () => {
   });
 }
 
+const addSelectHoverListener = () => {
+};
+
 /* jQuery functions */
 $(document).ready(function() {
   setSlider();
-  setSelect();
-  const renderedSelection = $('.select2');
-  console.log(renderedSelection);
+  addSelectHoverListener();
+  const emailInput = document.getElementById('email');
+  const passInput = document.getElementById('password');
+  const signUpButton = document.getElementById('sign-up');
+  validateSignUp(emailInput, passInput);
+  signUpButton.addEventListener('click', () => {
+    if (emailIsValid() && passIsValid()) {
+      goForeward();
+      setSelect();
+      const renderedSelection = $('.select2 :selected');
+      addSelectHoverListener();
+      console.log(renderedSelection.text());
+    } else {
+      if (!emailIsValid()) {
+        emailInput.classList.add('invalid-input');
+        validateOnType(emailInput, emailIsValid);
+      }
+      if (!passIsValid()) {
+        passInput.classList.add('invalid-input');
+        validateOnType(passInput, passIsValid);
+      }
+    }
+  });
 });
