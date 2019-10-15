@@ -9,7 +9,7 @@ const emailIsValid = () => emailPattern.test(document.getElementById('email').va
 const passIsValid = () => passPattern.test(document.getElementById('password').value);
 const nameIsValid = () => namePattern.test(document.getElementById('name').value);
 const hobbiesAreValid = () => hobbiesPattern.test(document.getElementById('hobbies').value);
-const houseIsSelected = () => document.getElementById('house').value !== '0';
+const houseIsSelected = () => $('.select-house').val() !== '0';
 
 /* Successfully signed up message */
 const afterSignUpMessage = 'Thank you for signing up and filling in information.'
@@ -58,8 +58,8 @@ const validateSignUp = (emailInput, passInput) => {
   });
 };
 
-/* Validates the second page */
-const validateDetailedInfo = (nameInput, houseSelect, hobbiesArea) => {
+/* Adds validation event listener for name and hobbies inpus */
+const validateDetailedInfo = (nameInput, hobbiesArea) => {
   nameInput.addEventListener('focusout', () => {
     if (!nameIsValid()) {
       nameInput.classList.add('invalid-input');
@@ -72,7 +72,6 @@ const validateDetailedInfo = (nameInput, houseSelect, hobbiesArea) => {
       validateOnType(hobbiesArea, hobbiesAreValid);
     }
   });
-  houseSelect.addEventListener('change', validateHouseIsSelected);
 };
 
 /* Conceils the code related to the first page and reveals the second page,
@@ -82,10 +81,10 @@ const goForeward = () => {
   document.getElementById('first-page').style.display = 'none';
   document.getElementById('second-page').style.display = 'block';
   const nameInput = document.getElementById('name');
-  const houseSelect = document.getElementById('house');
+  const selectedHouse = $('.select-house').val();
   const hobbiesArea = document.getElementById('hobbies');
   const saveButton = document.getElementById('save');
-  validateDetailedInfo(nameInput, houseSelect, hobbiesArea);
+  validateDetailedInfo(nameInput, hobbiesArea);
   saveButton.addEventListener('click', () => {
     if (nameIsValid() && hobbiesAreValid() && houseIsSelected()) {
       alert(afterSignUpMessage);
@@ -99,12 +98,28 @@ const goForeward = () => {
         validateOnType(hobbiesArea, hobbiesAreValid);
       }
       if (!houseIsSelected()) {
-        houseSelect.classList.add('invalid-input');
-        houseSelect.addEventListener('change', validateHouseIsSelected);
+        // $('span.select2-container').classList.add('invalid-input');
+        /* here need to add something like event listener about selection changed */
       }
     }
   });
 };
+
+/* The list of Great Houses of Westeros.
+ * Indes of a house in the list complies with
+ * the appropriate index of image in slider.
+ */
+const houses = [
+  'arryn',
+  'baratheon',
+  'greyjoy',
+  'martell',
+  'lannister',
+  'stark',
+  'targaryen',
+  'tully',
+  'tyrell',
+];
 
 /* Sets slider */
 const setSlider = () => {
@@ -114,25 +129,39 @@ const setSlider = () => {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 3000,
+    waitForAnimate: false,
   });
 };
 
 /* Set custom select-option (Select2) */
 const setSelect = () => {
-  $('.select2').select2({
+  $('.select-house').select2({
     width: '100%',
     theme: 'bootstrap4',
     minimumResultsForSearch: -1,
   });
 }
 
-const addSelectHoverListener = () => {
+/* Setst the appropriate slide on select option */
+const setSelectListener = () => {
+  let freeze = false;
+  $('.select-house').on('select2:select', () => {
+    const selectedHouse = $('.select-house').val();
+    if (selectedHouse === '0') {
+      freeze = false;
+      $('.slider').slick('slickPlay');
+    } else {
+      freeze = true;
+      const houseIndex = houses.indexOf(selectedHouse);
+      $('.slider').slick('slickPause');
+      $('.slider').slick('slickGoTo', houseIndex);
+    }
+  });
 };
 
 /* jQuery functions */
 $(document).ready(function() {
   setSlider();
-  addSelectHoverListener();
   const emailInput = document.getElementById('email');
   const passInput = document.getElementById('password');
   const signUpButton = document.getElementById('sign-up');
@@ -141,9 +170,7 @@ $(document).ready(function() {
     if (emailIsValid() && passIsValid()) {
       goForeward();
       setSelect();
-      const renderedSelection = $('.select2 :selected');
-      addSelectHoverListener();
-      console.log(renderedSelection.text());
+      setSelectListener();
     } else {
       if (!emailIsValid()) {
         emailInput.classList.add('invalid-input');
