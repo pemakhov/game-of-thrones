@@ -98,9 +98,14 @@ const goForeward = () => {
         validateOnType(hobbiesArea, hobbiesAreValid);
       }
       if (!houseIsSelected()) {
-        // $('span.select2-container').classList.add('invalid-input');
-        /* here need to add something like event listener about selection changed */
+        $('span.select2-container').addClass('invalid-input');
       }
+    }
+  });
+  $('select-house').on('change', function() {
+    console.log('hello');
+    if ($('.select-house').val() !== '0') {
+      $('span.select2-container').removeClass('invalid-input');
     }
   });
 };
