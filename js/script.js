@@ -102,12 +102,6 @@ const goForeward = () => {
       }
     }
   });
-  $('select-house').on('change', function() {
-    console.log('hello');
-    if ($('.select-house').val() !== '0') {
-      $('span.select2-container').removeClass('invalid-input');
-    }
-  });
 };
 
 /* The list of Great Houses of Westeros.
@@ -155,11 +149,15 @@ const setSelectListener = () => {
     if (selectedHouse === '0') {
       freeze = false;
       $('.slider').slick('slickPlay');
+      /* Makes it highlighted when unselected */
+      $('span.select2-container').addClass('invalid-input');
     } else {
       freeze = true;
       const houseIndex = houses.indexOf(selectedHouse);
       $('.slider').slick('slickPause');
       $('.slider').slick('slickGoTo', houseIndex);
+      /* Removes highlight when selected */
+      $('span.select2-container').removeClass('invalid-input');
     }
   });
 };
