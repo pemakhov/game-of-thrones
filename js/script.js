@@ -1,7 +1,7 @@
 /* RegExp test input patterns */
 const emailPattern = /^[A-Za-z\d][\w.-]+[A-Za-z\d]@[A-Za-z\d][\w-]+[A-Za-z\d]\.[A-Za-z]{2,3}$/;
 const passPattern = /^[\w!@#$%^&*()_+-=]{8,32}$/;
-const namePattern = /([A-Za-z\d]+)$/;
+const namePattern = /(^[A-Za-z0-9]{1,25})$/;
 const hobbiesPattern = /^(?:\b\w+\b[\s\r\n]*){3,250}$/;
 
 /* Input validators */
@@ -95,9 +95,10 @@ const goForeward = () => {
   const nameInput = document.getElementById('name');
   const houseSelect = document.getElementById('house');
   const hobbiesArea = document.getElementById('hobbies');
-  const saveButton = document.getElementById('save');
+  const saveForm = document.getElementById('save');
   validateDetailedInfo(nameInput, houseSelect, hobbiesArea);
-  saveButton.addEventListener('click', () => {
+  saveForm.onsubmit = (e) => {
+    e.preventDefault();
     if (nameIsValid() && hobbiesAreValid() && houseIsSelected()) {
       alert(afterSignUpMessage);
     } else {
@@ -114,7 +115,7 @@ const goForeward = () => {
         houseSelect.addEventListener('change', validateHouseIsSelected);
       }
     }
-  });
+  };
 };
 
 /* Shows the message about successful validation,
@@ -123,9 +124,10 @@ const goForeward = () => {
 documetIsReady(() => {
   const emailInput = document.getElementById('email');
   const passInput = document.getElementById('password');
-  const signUpButton = document.getElementById('sign-up');
+  const signUpForm = document.getElementById('sign-up');
   validateSignUp(emailInput, passInput);
-  signUpButton.addEventListener('click', () => {
+  signUpForm.onsubmit = (e) => {
+    e.preventDefault();
     if (emailIsValid() && passIsValid()) {
       goForeward();
     } else {
@@ -138,5 +140,5 @@ documetIsReady(() => {
         validateOnType(passInput, passIsValid);
       }
     }
-  });
+  };
 });

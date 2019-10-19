@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Login on Game of Thrones</title>
   <link href="https://fonts.googleapis.com/css?family=EB+Garamond&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/theme.css" >
   <script src="js/script.js"></script>
 </head>
@@ -11,13 +12,13 @@
   <div class="left"></div>
   <div class="right">
     <h1>GAME OF THRONES</h1>
-    <form action="">
+    <form id="sign-up" action="">
       <div id="first-page">
         <h2>Enter your email</h2>
         <input type="email" placeholder="arya@westeros.com" id="email">
         <hr>
         <h2>Choose secure password</h2>
-        <div class="description">Must be at least 8 characters</div>
+        <label class="description">Must be at least 8 characters</label>
         <span id="pass">
           <input type="password" name="password" placeholder="password" id="password">
         </span>
@@ -28,17 +29,17 @@
             <label for="remember-me"><span>Remember me</span></label>
           </div>
         </div>
-        <input type="button" value="Sign up" id="sign-up">
+        <input type="submit" value="Sign up">
       </div>
     </form>
-    <form action="">
+    <form id="save" action="">
       <div id="second-page">
         <blockquote>
           <p>You've successfully joined the game.<br>
           Tell us more about yourself.</p>
         </blockquote>
         <h2>Who are you?</h2>
-        <div class="description">Alpha-numeric username</div>
+        <label class="description">Alpha-numeric username</label>
         <input id="name" type="text" name="name" placeholder="arya">
         <hr>
         <h2>Your Great House</h2>
@@ -56,10 +57,10 @@
         </select>
         <hr>
         <h2>Your preferences, hobbies, wishes, etc.</h2>
-        <div class="description">3 to 250 words</div>
+        <label class="description">3 to 250 words</label>
         <textarea id="hobbies" name="hobbies" cols="30" rows="2" placeholder="I have a long TOKILL list..."></textarea>
         <hr>
-        <input id="save" type="button" value="Save">
+        <input type="submit" value="Save">
       </div>
     </form>
   </div>
