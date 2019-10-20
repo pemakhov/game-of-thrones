@@ -30,18 +30,6 @@ const validateOnType = (input, validator) => {
   });
 };
 
-/* Adds or removes class indicating invalid input
- * to the select/option input
- */
-const validateHouseIsSelected = () => {
-  const houseSelect = document.getElementById('house');
-  if (!houseIsSelected()) {
-    houseSelect.classList.add('invalid-input');
-  } else {
-    houseSelect.classList.remove('invalid-input');
-  }
-};
-
 /* Validates the first page */
 const validateSignUp = (emailInput, passInput) => {
   emailInput.addEventListener('focusout', () => {
@@ -144,18 +132,19 @@ const setSelect = () => {
 /* Setst the appropriate slide on select option */
 const setSelectListener = () => {
   let freeze = false;
+  const $slider = $('.slider');
   $('.select-house').on('select2:select', () => {
     const selectedHouse = $('.select-house').val();
     if (selectedHouse === '0') {
       freeze = false;
-      $('.slider').slick('slickPlay');
+      $slider.slick('slickPlay');
       /* Makes it highlighted when unselected */
       $('span.select2-container').addClass('invalid-input');
     } else {
       freeze = true;
       const houseIndex = houses.indexOf(selectedHouse);
-      $('.slider').slick('slickPause');
-      $('.slider').slick('slickGoTo', houseIndex);
+      $slider.slick('slickPause');
+      $slider.slick('slickGoTo', houseIndex);
       /* Removes highlight when selected */
       $('span.select2-container').removeClass('invalid-input');
     }
