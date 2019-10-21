@@ -70,15 +70,17 @@ h1 {
   font-weight: normal;
 }
 
-h2 {
+label {
+  display: flex;
+  flex-direction: column;
   margin: 0;
-  font-weight: 100;
-  font-size: 1.5em;
+  font-size: 2em;
+  font-family: "EB Garamond", sans-serif;
 }
 
-.description {
+span.description {
   font-family: "Open sans", sans-serif;
-  font-size: 1em;
+  font-size: 0.5em;
   color: var(--text-secondary);
 }
 
@@ -186,9 +188,9 @@ blockquote {
   padding: 0.3em 20px;
 }
 blockquote p {
+  font-family: "Open sans", sans-serif;
   display: inline;
   font-size: 1.1em;
-  font-family: "Open sans", sans-serif;
   color: var(--text-secondary);
 }
 
