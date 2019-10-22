@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Login on Game of Thrones</title>
-  <link href="https://fonts.googleapis.com/css?family=EB+Garamond&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|EB+Garamond&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/slick.css"/>
   <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
   <link href="https://cdn.jsdelivr.net/npm/select2@4.0.11/dist/css/select2.min.css" rel="stylesheet" />
@@ -26,16 +26,16 @@
   </div>
   <div class="right">
     <h1>GAME OF THRONES</h1>
-    <form action="">
+    <form id="sign-up" action="">
       <div id="first-page">
-        <h2>Enter your email</h2>
+        <label>Enter your email</label>
         <input type="email" placeholder="arya@westeros.com" id="email">
         <hr>
-        <h2>Choose secure password</h2>
-        <div class="description">Must be at least 8 characters</div>
-        <span id="pass">
-          <input type="password" name="password" placeholder="password" id="password">
-        </span>
+        <label>
+          Choose secure password
+          <span class="description">Must be at least 8 characters</span>
+        </label>
+        <input type="password" name="password" placeholder="password" id="password">
         <hr>
         <div class="box">
           <div class="box__element">
@@ -43,20 +43,22 @@
             <label for="remember-me"><span>Remember me</span></label>
           </div>
         </div>
-        <input type="button" value="Sign up" id="sign-up">
+        <input type="submit" value="Sign up">
       </div>
     </form>
-    <form action="">
+    <form id="save" action="">
       <div id="second-page">
         <blockquote>
           <p>You've successfully joined the game.<br>
           Tell us more about yourself.</p>
         </blockquote>
-        <h2>Who are you?</h2>
-        <div class="description">Alpha-numeric username</div>
+        <label>
+          Who are you?
+          <span class="description">Alpha-numeric username</span>
+        </label>
         <input id="name" type="text" name="name" placeholder="arya">
         <hr>
-        <h2>Your Great House</h2>
+        <label>Your Great House</label>
         <select id="house" name="house" class="select-house">
           <option selected="selected" value="0">Select House</option>
           <option value="arryn">Arryn of the Eyrie</option>
@@ -70,11 +72,13 @@
           <option value="tyrell">Tyrell of Highgarden</option>
         </select>
         <hr>
-        <h2>Your preferences, hobbies, wishes, etc.</h2>
-        <div class="description">3 to 250 words</div>
+        <label>
+          Your preferences, hobbies, wishes, etc.
+          <span class="description">3 to 250 words</span>
+        </label>
         <textarea id="hobbies" name="hobbies" cols="30" rows="2" placeholder="I have a long TOKILL list..."></textarea>
         <hr>
-        <input id="save" type="button" value="Save">
+        <input type="submit" value="Save">
       </div>
     </form>
   </div>
