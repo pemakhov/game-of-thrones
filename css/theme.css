@@ -75,10 +75,6 @@ body {
   padding: 0;
 }
 
-#second-page {
-  display: none;
-}
-
 @font-face {
   font-family: "game-of-thrones";
   font-style: normal;
@@ -106,6 +102,17 @@ span.description {
   font-family: "Open sans", sans-serif;
   font-size: 0.5em;
   color: var(--text-secondary);
+}
+
+span.validation-message {
+    font-family: "Open sans", sans-serif;
+    font-size: 18px;
+    color: var(--emergency-color);
+}
+
+div.post-login {
+    margin: 0 1em;
+    font-size: 20px;
 }
 
 hr {

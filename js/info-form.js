@@ -1,20 +1,11 @@
 /* RegExp test input patterns */
-const emailPattern = /^[A-Za-z\d][\w.-]+[A-Za-z\d]@[A-Za-z\d][\w-]+[A-Za-z\d]\.[A-Za-z]{2,3}$/;
-const passPattern = /^[\w!@#$%^&*()_+-=]{8,32}$/;
 const namePattern = /(^[A-Za-z0-9]{1,25})$/;
 const hobbiesPattern = /^(?:\b\w+\b[\s\r\n]*){3,250}$/;
 
 /* Input validators */
-const emailIsValid = () => emailPattern.test(document.getElementById('email').value);
-const passIsValid = () => passPattern.test(document.getElementById('password').value);
 const nameIsValid = () => namePattern.test(document.getElementById('name').value);
 const hobbiesAreValid = () => hobbiesPattern.test(document.getElementById('hobbies').value);
 const houseIsSelected = () => $('.select-house').val() !== '0';
-
-/* Successfully signed up message */
-const afterSignUpMessage = 'Thank you for signing up and filling in information.'
-        + ' But our websight is under construction yet.'
-        + ' We are terribly sorry.';
 
 /* Validates input while typing.
  * input - an input to validate;
@@ -26,22 +17,6 @@ const validateOnType = (input, validator) => {
       input.classList.remove('invalid-input');
     } else {
       input.classList.add('invalid-input');
-    }
-  });
-};
-
-/* Validates the first page */
-const validateSignUp = (emailInput, passInput) => {
-  emailInput.addEventListener('focusout', () => {
-    if (!emailIsValid()) {
-      emailInput.classList.add('invalid-input');
-      validateOnType(emailInput, emailIsValid);
-    }
-  });
-  passInput.addEventListener('focusout', () => {
-    if (!passIsValid()) {
-      passInput.classList.add('invalid-input');
-      validateOnType(passInput, passIsValid);
     }
   });
 };
@@ -60,37 +35,6 @@ const validateDetailedInfo = (nameInput, hobbiesArea) => {
       validateOnType(hobbiesArea, hobbiesAreValid);
     }
   });
-};
-
-/* Conceils the code related to the first page and reveals the second page,
- * if all inputs passed validation.
- */
-const goForeward = () => {
-  document.getElementById('first-page').style.display = 'none';
-  document.getElementById('second-page').style.display = 'block';
-  const nameInput = document.getElementById('name');
-  const selectedHouse = $('.select-house').val();
-  const hobbiesArea = document.getElementById('hobbies');
-  const saveForm = document.getElementById('save');
-  validateDetailedInfo(nameInput, hobbiesArea);
-  saveForm.onsubmit = (e) => {
-    e.preventDefault();
-    if (nameIsValid() && hobbiesAreValid() && houseIsSelected()) {
-      alert(afterSignUpMessage);
-    } else {
-      if (!nameIsValid()) {
-        nameInput.classList.add('invalid-input');
-        validateOnType(nameInput, nameIsValid);
-      }
-      if (!hobbiesAreValid()) {
-        hobbiesArea.classList.add('invalid-input');
-        validateOnType(hobbiesArea, hobbiesAreValid);
-      }
-      if (!houseIsSelected()) {
-        $('span.select2-container').addClass('invalid-input');
-      }
-    }
-  };
 };
 
 /* The list of Great Houses of Westeros.
@@ -128,7 +72,7 @@ const setSelect = () => {
     theme: 'bootstrap4',
     minimumResultsForSearch: -1,
   });
-}
+};
 
 /* Setst the appropriate slide on select option */
 const setSelectListener = () => {
@@ -155,25 +99,32 @@ const setSelectListener = () => {
 /* jQuery functions */
 $(document).ready(function() {
   setSlider();
-  const emailInput = document.getElementById('email');
-  const passInput = document.getElementById('password');
-  const signUpForm = document.getElementById('sign-up');
-  validateSignUp(emailInput, passInput);
-  signUpForm.onsubmit = (e) => {
+  setSelect();
+  setSelectListener();
+  const nameInput = document.getElementById('name');
+  const hobbiesArea = document.getElementById('hobbies');
+  const saveForm = document.forms.namedItem('save');
+  validateDetailedInfo(nameInput, hobbiesArea);
+  saveForm.onsubmit = (e) => {
     e.preventDefault();
-    if (emailIsValid() && passIsValid()) {
-      goForeward();
-      setSelect();
-      setSelectListener();
-    } else {
-      if (!emailIsValid()) {
-        emailInput.classList.add('invalid-input');
-        validateOnType(emailInput, emailIsValid);
-      }
-      if (!passIsValid()) {
-        passInput.classList.add('invalid-input');
-        validateOnType(passInput, passIsValid);
-      }
-    }
+    // if (nameIsValid() && hobbiesAreValid() && houseIsSelected()) {
+      const data = new FormData(saveForm),
+          request = new XMLHttpRequest();
+      request.open('POST', 'index.php', true);
+      request.send(data);
+      location.reload();
+    // } else {
+    //   if (!nameIsValid()) {
+    //     nameInput.classList.add('invalid-input');
+    //     validateOnType(nameInput, nameIsValid);
+    //   }
+    //   if (!hobbiesAreValid()) {
+    //     hobbiesArea.classList.add('invalid-input');
+    //     validateOnType(hobbiesArea, hobbiesAreValid);
+    //   }
+    //   if (!houseIsSelected()) {
+    //     $('span.select2-container').addClass('invalid-input');
+    //   }
+    // }
   };
 });
