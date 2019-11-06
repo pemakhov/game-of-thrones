@@ -7,11 +7,23 @@ class DataCollector
     private string $email;
     private string $fName;
     private array $user;
+    private array $existingFNames;
 
     function __construct()
     {
+        if(!isset($_POST) || sizeof($_POST) === 0) {
+            return;
+        }
+
+        $this->existingFNames = $this->getFileNames();
+        $this->fName = $this->makeFName($this->email);
+
         /* Create user and write first part of data */
         if (isset($_POST['email'], $_POST['password'])) {
+            if (in_array($this->fName, $this->existingFNames)) {
+                $_SESSION['invEmailMessage'] = 'User with this email already exists';
+                return;
+            }
             $this->makeUserDataFile();
             return;
         }
@@ -30,10 +42,8 @@ class DataCollector
         }
         $_SESSION['email'] = $_POST['email'];
         $this->email = $_POST['email'];
-        $this->fName = $this->makeFName($this->email);
         $this->user = $this->makeUser();
         $this->writeToFile(json_encode($this->user), $this->fName);
-        //todo: generate invEmaiMessage that user with current email exists
     }
 
     function appendUserDataFile()
@@ -71,7 +81,7 @@ class DataCollector
 
     function makeFName($email)
     {
-        return self::DIR_NAME . preg_replace('/[^A-Za-z0-9\-]/', '-', $email);
+        return self::DIR_NAME . preg_replace('/[^A-Za-z0-9\-@._]/', '-', $email);
     }
 
     function makeUser()
@@ -82,4 +92,13 @@ class DataCollector
         }
         return $newUser;
     }
+
+    /*
+     * Returns names of all files in the DIR_NAME directory.
+     */
+    private function getFileNames()
+    {
+        return array_diff(scandir(self::DIR_NAME), array('.', '..'));
+    }
+
 }
