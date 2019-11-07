@@ -1,0 +1,1 @@
+{"email":"serhiy.pemakhov@gmail.com","password":"qwertyasdfgh","name":"Jamie","house":"lannister","hobbies":"To fight with a sword"}

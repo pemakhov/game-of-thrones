@@ -1,10 +1,12 @@
 <?php
 session_start();
 include_once 'Validator.php';
-$validator = new Validator();
 include_once 'StatusSetter.php';
-$statusSetter = new StatusSetter();
 include_once 'ContentManager.php';
+include_once 'DataCollector.php';
+$validator = new Validator();
+$dataCollector = new DataCollector();
+$statusSetter = new StatusSetter();
 ?>
 <!DOCTYPE html>
 <html lang="en">

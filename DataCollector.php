@@ -4,30 +4,24 @@
 class DataCollector
 {
     const DIR_NAME = 'users/';
-    private string $email;
-    private string $fName;
-    private array $user;
-    private array $existingFNames;
+    private $email;
+    private $fName;
+    private $user;
+    private $existingFNames;
 
     function __construct()
     {
-        if(!isset($_POST) || sizeof($_POST) === 0) {
+        if (!isset($_POST) || sizeof($_POST) === 0) {
             return;
         }
-
-        $this->existingFNames = $this->getFileNames();
-        $this->fName = $this->makeFName($this->email);
 
         /* Create user and write first part of data */
         if (isset($_POST['email'], $_POST['password'])) {
-            if (in_array($this->fName, $this->existingFNames)) {
-                $_SESSION['invEmailMessage'] = 'User with this email already exists';
-                return;
-            }
+
             $this->makeUserDataFile();
             return;
         }
-        if (isset($_SESSION['email'])) {
+        if (isset($_SESSION['email']) && sizeof($_POST) > 0) {
             $this->appendUserDataFile();
         }
     }
@@ -40,10 +34,18 @@ class DataCollector
         if (strlen($_SESSION['invEmailMessage']) > 0 || strlen($_SESSION['invPassMessage']) > 0) {
             return;
         }
-        $_SESSION['email'] = $_POST['email'];
+
         $this->email = $_POST['email'];
-        $this->user = $this->makeUser();
+        $this->existingFNames = $this->getFileNames();
+        $this->fName = $this->makeFName($this->email);
+
+        if (in_array($this->fName, $this->existingFNames)) {
+            $_SESSION['invEmailMessage'] = 'User with this email already exists';
+            return;
+        }
+        $this->user = $this->addUserProperties(new stdClass());
         $this->writeToFile(json_encode($this->user), $this->fName);
+        $_SESSION['email'] = $this->email;
     }
 
     function appendUserDataFile()
@@ -58,15 +60,19 @@ class DataCollector
             strlen($_SESSION['invHobbiesMessage']) > 0) {
             return;
         }
-        //todo: read append and write user data
+        $this->fName = $this->makeFName($_SESSION['email']);
+        $this->user = json_decode($this->getFileContent($this->fName));
+        $this->user = $this->addUserProperties($this->user);
+        $this->writeToFile(json_encode($this->user), $this->fName);
     }
 
 
     /* Opens file for reading, reads and returns its content */
     function getFileContent($fName)
     {
-        $file = fopen($fName, 'r+') or die('Unable to open file.');
-        $txt = fread($file, filesize($fName));
+        $fPath = self::DIR_NAME . $fName;
+        $file = fopen($fPath, 'r+') or die('Unable to open file.');
+        $txt = fread($file, filesize($fPath));
         fclose($file);
         return $txt;
     }
@@ -74,23 +80,23 @@ class DataCollector
     /* Opens file for writing, replaces its content */
     function writeToFile($txt, $fName)
     {
-        $file = fopen($fName, 'w+') or die('Unable to open file.');
+        $fPath = self::DIR_NAME . $fName;
+        $file = fopen($fPath, 'w+') or die('Unable to open file.');
         fwrite($file, $txt);
         fclose($file);
     }
 
     function makeFName($email)
     {
-        return self::DIR_NAME . preg_replace('/[^A-Za-z0-9\-@._]/', '-', $email);
+        return preg_replace('/[^A-Za-z0-9\-@._]/', '-', $email);
     }
 
-    function makeUser()
+    function addUserProperties($user)
     {
-        $newUser = array();
         foreach ($_POST as $key => $value) {
-            $newUser[$key] = $value;
+            $user->$key = $value;
         }
-        return $newUser;
+        return $user;
     }
 
     /*
@@ -98,7 +104,6 @@ class DataCollector
      */
     private function getFileNames()
     {
-        return array_diff(scandir(self::DIR_NAME), array('.', '..'));
+        return scandir(self::DIR_NAME);
     }
-
 }

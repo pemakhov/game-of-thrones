@@ -58,21 +58,21 @@ $(document).ready(function () {
     // validateSignUp(emailInput, passInput);
     signUpForm.onsubmit = (e) => {
         e.preventDefault();
-        // if (emailIsValid() && passIsValid()) {
+        if (emailIsValid() && passIsValid()) {
             const data = new FormData(signUpForm),
                 request = new XMLHttpRequest();
             request.open('POST', location.pathname, true);
             request.send(data);
             location.reload();
-        // } else {
-        //     if (!emailIsValid()) {
-        //         emailInput.classList.add('invalid-input');
-        //         validateOnType(emailInput, emailIsValid);
-        //     }
-        //     if (!passIsValid()) {
-        //         passInput.classList.add('invalid-input');
-        //         validateOnType(passInput, passIsValid);
-        //     }
-        // }
+        } else {
+            if (!emailIsValid()) {
+                emailInput.classList.add('invalid-input');
+                validateOnType(emailInput, emailIsValid);
+            }
+            if (!passIsValid()) {
+                passInput.classList.add('invalid-input');
+                validateOnType(passInput, passIsValid);
+            }
+        }
     };
 });

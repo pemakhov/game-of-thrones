@@ -107,24 +107,24 @@ $(document).ready(function() {
   validateDetailedInfo(nameInput, hobbiesArea);
   saveForm.onsubmit = (e) => {
     e.preventDefault();
-    // if (nameIsValid() && hobbiesAreValid() && houseIsSelected()) {
+    if (nameIsValid() && hobbiesAreValid() && houseIsSelected()) {
       const data = new FormData(saveForm),
           request = new XMLHttpRequest();
       request.open('POST', 'index.php', true);
       request.send(data);
       location.reload();
-    // } else {
-    //   if (!nameIsValid()) {
-    //     nameInput.classList.add('invalid-input');
-    //     validateOnType(nameInput, nameIsValid);
-    //   }
-    //   if (!hobbiesAreValid()) {
-    //     hobbiesArea.classList.add('invalid-input');
-    //     validateOnType(hobbiesArea, hobbiesAreValid);
-    //   }
-    //   if (!houseIsSelected()) {
-    //     $('span.select2-container').addClass('invalid-input');
-    //   }
-    // }
+    } else {
+      if (!nameIsValid()) {
+        nameInput.classList.add('invalid-input');
+        validateOnType(nameInput, nameIsValid);
+      }
+      if (!hobbiesAreValid()) {
+        hobbiesArea.classList.add('invalid-input');
+        validateOnType(hobbiesArea, hobbiesAreValid);
+      }
+      if (!houseIsSelected()) {
+        $('span.select2-container').addClass('invalid-input');
+      }
+    }
   };
 });
