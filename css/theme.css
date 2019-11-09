@@ -86,7 +86,7 @@ h1 {
   font-family: "game-of-thrones";
   font-size: 2.2em;
   text-align: center;
-  margin: 0 0 2em;
+  margin: 0 0 20px;
   font-weight: normal;
 }
 
@@ -175,7 +175,7 @@ select option:focus {
 input[type="submit"] {
   display: block;
   width: 100%;
-  margin: 3em 0 0;
+  margin: 20px 0 0;
   height: 2.8em;
   background-color: var(--button-color);
   border: none;
@@ -215,7 +215,7 @@ input[type="submit"]:active {
 
 blockquote {
   border-left: 3px solid var(--text-main);
-  margin: 0 10px 3em 0;
+  margin: 0 10px 20px 0;
   padding: 0.3em 20px;
 }
 blockquote p {
