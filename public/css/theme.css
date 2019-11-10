@@ -232,6 +232,15 @@ blockquote p {
   outline: 2px dotted var(--emergency-color);
 }
 
+a.log-out,
+a.log-out:visited {
+    color: var(--text-secondary);
+}
+
+a.log-out:hover {
+    text-decoration: none;
+}
+
 /* Checkbox with a custom background color, from the following website:
 https://stackoverflow.com/questions/34388696/how-to-change-the-background-color-on-a-input-checkbox-with-css/34389136 */
 .box {

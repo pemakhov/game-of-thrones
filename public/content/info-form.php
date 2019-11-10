@@ -7,13 +7,13 @@
         <label>
             Who are you?
             <span class="description">Alpha-numeric username</span>
-            <span class="validation-message"><? print ($_SESSION['invNameMessage'] ?? '') ?></span>
+            <span class="validation-message"><?php print ($_SESSION['invNameMessage'] ?? '') ?></span>
         </label>
         <input id="name" type="text" name="name" placeholder="arya">
         <hr>
         <label>
             Your Great House
-            <span class="validation-message"><? print ($_SESSION['invHouseMessage'] ?? '') ?></span>
+            <span class="validation-message"><?php print ($_SESSION['invHouseMessage'] ?? '') ?></span>
         </label>
         <select id="house" name="house" class="select-house">
             <option selected="selected" value="0">Select House</option>
@@ -31,7 +31,7 @@
         <label>
             Your preferences, hobbies, wishes, etc.
             <span class="description">3 to 250 words</span>
-            <span class="validation-message"><? print ($_SESSION['invHobbiesMessage'] ?? '') ?></span>
+            <span class="validation-message"><?php print ($_SESSION['invHobbiesMessage'] ?? '') ?></span>
         </label>
         <textarea id="hobbies" name="hobbies" cols="30" rows="2"
                   placeholder="I have a long TOKILL list..."></textarea>

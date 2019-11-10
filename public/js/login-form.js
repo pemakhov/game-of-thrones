@@ -53,9 +53,8 @@ $(document).ready(function () {
     setSlider();
     const emailInput = document.getElementById('email');
     const passInput = document.getElementById('password');
-    // const signUpForm = document.getElementById('sign-up');
     const signUpForm = document.forms.namedItem('sign-up');
-    // validateSignUp(emailInput, passInput);
+    validateSignUp(emailInput, passInput);
     signUpForm.onsubmit = (e) => {
         e.preventDefault();
         if (emailIsValid() && passIsValid()) {

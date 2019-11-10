@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * The class setting status "isAuth" and "isInfoFilled" according to the
+ * validation messages stored in the appropriate $_SESSION variables.
+ */
+
 class StatusSetter
 {
     function __construct()
@@ -7,6 +12,7 @@ class StatusSetter
         $this->setStatus();
     }
 
+    /* Sets status $_SESSION['isAuth'] and $_SESSION['isInfoFilled'] */
     function setStatus()
     {
         if (!isset($_SESSION['isAuth']) &&
@@ -35,6 +41,7 @@ class StatusSetter
         }
     }
 
+    /* Returns true when passed variable contains a message */
     function hasInvalidMessage($invalidParamMessage)
     {
         return strlen($invalidParamMessage) > 0;

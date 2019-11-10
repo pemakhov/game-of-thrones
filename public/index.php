@@ -1,11 +1,19 @@
 <?php
 session_start();
-include_once 'Validator.php';
-include_once 'StatusSetter.php';
-include_once 'ContentManager.php';
-include_once 'DataCollector.php';
+
+/* The directory containing php files */
+const APP_DIR = '../app/';
+
+include_once APP_DIR . 'Validator.php';
+include_once APP_DIR . 'StatusSetter.php';
+include_once APP_DIR . 'ContentManager.php';
+include_once APP_DIR . 'DataCollector.php';
+
+/* Validates all input passed in $_POST variable and sets invalid validation messages */
 $validator = new Validator();
+/* Writes user data into a json file */
 $dataCollector = new DataCollector();
+/* Sets status according to the validation results */
 $statusSetter = new StatusSetter();
 ?>
 <!DOCTYPE html>
@@ -13,16 +21,13 @@ $statusSetter = new StatusSetter();
 <head>
     <meta charset="UTF-8">
     <title>Login on Game of Thrones</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|EB+Garamond&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.11/dist/css/select2.min.css" rel="stylesheet"/>
+    <link type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|EB+Garamond&display=swap"
+          rel="stylesheet">
+    <link type="text/css" href="css/slick.css" rel="stylesheet"/>
+    <link type="text/css" href="css/slick-theme.css" rel="stylesheet"/>
+    <link type="text/css" href="https://cdn.jsdelivr.net/npm/select2@4.0.11/dist/css/select2.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="css/select2-bootstrap4.css">
     <link rel="stylesheet" type="text/css" href="css/theme.css">
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.11/dist/js/select2.min.js"></script>
-    <script type="text/javascript" src="js/slick.min.js"></script>
-    <script src="<? print ContentManager::getScriptPath() ?>"></script>
 </head>
 <body>
 <div class="left">
@@ -40,8 +45,11 @@ $statusSetter = new StatusSetter();
 </div>
 <div class="right">
     <h1>GAME OF THRONES</h1>
-    <? ContentManager::getContent(); ?>
+    <?php ContentManager::getContent(); ?>
 </div>
-</section>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.11/dist/js/select2.min.js"></script>
+<script type="text/javascript" src="js/slick.min.js"></script>
+<script src="<?php print ContentManager::getScriptPath() ?>"></script>
 </body>
 </html>

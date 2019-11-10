@@ -1,12 +1,20 @@
 <?php
 
+/* The class creating a json file with user data,
+ * writing login data in it, then appending info data.
+ */
 
 class DataCollector
 {
+    /* The directory path where users data is stored */
     const DIR_NAME = 'users/';
+    /* User's e-mail */
     private $email;
+    /* File name, generated from user's email */
     private $fName;
+    /* The object containing user's properties */
     private $user;
+    /* The array of existing file names */
     private $existingFNames;
 
     function __construct()
@@ -26,6 +34,10 @@ class DataCollector
         }
     }
 
+    /* Creates a file with user's login data (email and password).
+     * If file-name already exists, creates a correspondent message
+     * in $_POST['invEmailMessage'].
+     */
     function makeUserDataFile()
     {
         if (!isset($_SESSION['invEmailMessage'], $_SESSION['invPassMessage'])) {
@@ -48,6 +60,7 @@ class DataCollector
         $_SESSION['email'] = $this->email;
     }
 
+    /* Appends user info into data file */
     function appendUserDataFile()
     {
         if (!isset($_SESSION['invNameMessage'],
@@ -86,11 +99,16 @@ class DataCollector
         fclose($file);
     }
 
+    /* Creates a file name from user's email.
+     * Replaces all file system forbidden characters with "-".
+     * Adds ".json" extension. Returns file name.
+     */
     function makeFName($email)
     {
-        return preg_replace('/[^A-Za-z0-9\-@._]/', '-', $email);
+        return (preg_replace('/[^A-Za-z0-9\-@._]/', '-', $email)) . '.json';
     }
 
+    /* Adds user properties stored in $_POST into $this->user object */
     function addUserProperties($user)
     {
         foreach ($_POST as $key => $value) {
@@ -99,9 +117,7 @@ class DataCollector
         return $user;
     }
 
-    /*
-     * Returns names of all files in the DIR_NAME directory.
-     */
+    /* Returns the names of all files in the DIR_NAME directory. */
     private function getFileNames()
     {
         return scandir(self::DIR_NAME);
