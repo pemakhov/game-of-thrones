@@ -7,7 +7,7 @@
 class DataCollector
 {
     /* The directory path where users data is stored */
-    const DIR_NAME = 'users/';
+    const DIR_NAME = '../users/';
     /* User's e-mail */
     private $email;
     /* File name, generated from user's email */
