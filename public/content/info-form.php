@@ -39,3 +39,5 @@
         <input type="submit" value="Save">
     </div>
 </form>
+<script type="text/javascript" src="js/info-form.js"></script>
+

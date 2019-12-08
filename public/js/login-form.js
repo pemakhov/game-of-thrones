@@ -36,21 +36,8 @@ const validateSignUp = (emailInput, passInput) => {
     });
 };
 
-/* Sets slider */
-const setSlider = () => {
-    $('.slider').slick({
-        dots: false,
-        infinite: true,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        waitForAnimate: false,
-    });
-};
-
 /* jQuery functions */
 $(document).ready(function () {
-    setSlider();
     const emailInput = document.getElementById('email');
     const passInput = document.getElementById('password');
     const signUpForm = document.forms.namedItem('sign-up');
@@ -58,11 +45,10 @@ $(document).ready(function () {
     signUpForm.onsubmit = (e) => {
         e.preventDefault();
         if (emailIsValid() && passIsValid()) {
-            const data = new FormData(signUpForm),
-                request = new XMLHttpRequest();
-            request.open('POST', location.pathname, true);
-            request.send(data);
-            location.reload();
+            const data = {email: emailInput.value, password: passInput.value};
+            $.post('index.php', data, function (result) {
+                $('.content').html(result);
+            });
         } else {
             if (!emailIsValid()) {
                 emailInput.classList.add('invalid-input');
