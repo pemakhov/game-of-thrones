@@ -13,7 +13,8 @@ class ContentManager
     public static function getContent()
     {
         if (isset($_SESSION['isInfoFilled'])) {
-            return include_once self::CONTENT_DIR . 'post-login.php';
+            /* After migrating on ajax it is not very beautiful */
+            return;
         }
 
         if (isset($_SESSION['isAuth'])) {
@@ -29,7 +30,7 @@ class ContentManager
     public static function getScriptPath()
     {
         if (isset($_SESSION['isInfoFilled'])) {
-            return 'js/slider-setter.js';
+            return;
         }
 
         if (isset($_SESSION['isAuth'])) {
@@ -38,5 +39,4 @@ class ContentManager
 
         return 'js/login-form.js';
     }
-
 }

@@ -32,7 +32,7 @@ class Validator
         if (strlen($email) === 0) {
             return 'Empty email';
         }
-        $pattern = '/^[A-Za-z\d][\w.-]+[A-Za-z\d]@[A-Za-z\d][\w-]+[A-Za-z\d]\.[A-Za-z]{2,3}$/';
+        $pattern = '/^[A-Za-z\d][\w.-]+[A-Za-z\d]@([A-Za-z\d]|[A-Za-z\d][\w-])+([A-Za-z\d]|)\.[A-Za-z]{2,3}$/';
         $message = 'Email doesn\'t comply with the email pattern';
 
         return preg_match($pattern, $email) ? '' : $message;

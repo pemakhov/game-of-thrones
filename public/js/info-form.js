@@ -1,6 +1,6 @@
 /* RegExp test input patterns */
-const namePattern = /(^[A-Za-z0-9]{1,25})$/;
-const hobbiesPattern = /^(?:\b\w+\b[\s\r\n]*){3,250}$/;
+const namePattern = /(^([A-Za-z0-9]|\w){1,25})$/u;
+const hobbiesPattern = /^(?:\b\w+\b[\s\r\n]*){3,250}$/u;
 
 /* Input validators */
 const nameIsValid = () => namePattern.test(document.getElementById('name').value);

@@ -35,7 +35,7 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.11/dist/js/select2.min.js"></script>
 <script type="text/javascript" src="js/slick.min.js"></script>
-<script type="text/javascript" src="../js/slider-setter.js"></script>
+<script type="text/javascript" src="js/slider-setter.js"></script>
 <script id="page-script" type="text/javascript" src="<?php echo ContentManager::getScriptPath(); ?>"></script>
 </body>
 </html>

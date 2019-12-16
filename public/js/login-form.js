@@ -1,5 +1,5 @@
 /* RegExp test input patterns */
-const emailPattern = /^[A-Za-z\d][\w.-]+[A-Za-z\d]@[A-Za-z\d][\w-]+[A-Za-z\d]\.[A-Za-z]{2,3}$/;
+const emailPattern = /^[A-Za-z\d][\w.-]+[A-Za-z\d]@([A-Za-z\d]|[A-Za-z\d][\w-])+([A-Za-z\d]|)\.[A-Za-z]{2,3}$/;
 const passPattern = /^[\w!@#$%^&*()_+-=]{8,32}$/;
 
 /* Input validators */
@@ -48,6 +48,7 @@ $(document).ready(function () {
             const data = {email: emailInput.value, password: passInput.value};
             $.post('index.php', data, function (result) {
                 $('.content').html(result);
+                $.getScript('js/info-form.js');
             });
         } else {
             if (!emailIsValid()) {
